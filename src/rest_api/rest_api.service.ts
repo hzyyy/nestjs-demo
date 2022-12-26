@@ -9,7 +9,7 @@ export class RestApiService {
   }
 
   findAll() {
-    return `This action returns all restApi`;
+    return `This action returns all restApi1`;
   }
 
   findOne(id: number) {

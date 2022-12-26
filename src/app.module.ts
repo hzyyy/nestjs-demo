@@ -3,9 +3,13 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { RestApiModule } from './rest_api/rest_api.module';
 import { TestController } from './test/test.controller';
+import { UserModule } from './user/user.module';
+import { User1Module } from './user_1/user_1.module';
+import { ListModule } from './list/list.module';
+import { ChildModuleModule } from './child-module/child-module.module';
 
 @Module({
-  imports: [RestApiModule],
+  imports: [RestApiModule, UserModule, User1Module, ListModule, ChildModuleModule],
   controllers: [AppController, TestController],
   providers: [AppService],
 })
