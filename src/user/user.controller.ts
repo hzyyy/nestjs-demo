@@ -16,6 +16,11 @@ import * as svgCaptcha from 'svg-captcha';
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
+  @Get()
+  index(): string {
+    return '这是user 模块'
+  }
+
   // @Get()
   // findAll(@Request() req, @Session() session) {
   //   return {
