@@ -7,9 +7,10 @@ import { UserModule } from './user/user.module';
 import { User1Module } from './user_1/user_1.module';
 import { ListModule } from './list/list.module';
 import { ChildModuleModule } from './child-module/child-module.module';
+import { UploadModule } from './upload/upload.module';
 
 @Module({
-  imports: [RestApiModule, UserModule, User1Module, ListModule, ChildModuleModule],
+  imports: [RestApiModule, UserModule, User1Module, ListModule, ChildModuleModule, UploadModule],
   controllers: [AppController, TestController],
   providers: [AppService],
 })

@@ -1,14 +1,42 @@
+import { join } from 'path';
 import { VersioningType } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import * as session from 'express-session';
+import { Request, Response, NextFunction } from 'express';
+import * as cors from 'cors';
+import { NestExpressApplication } from '@nestjs/platform-express/interfaces';
+
+// 全局中间件
+function GlobalMiddleware(req: Request, res: Response, next: NextFunction) {
+  const whiteList = ['/user']
+  
+  if(whiteList.indexOf(req.originalUrl) == -1) {
+    next()
+  } else {
+    res.send({ message: '这里是main.ts 全局拦截：user 模块禁止进入'})
+  }
+}
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  // NestExpressApplication 是给create() 方法增加一个泛型，可以更加友好的代码提示和推断
+  const app = await NestFactory.create<NestExpressApplication>(AppModule);
+  
+  // 可以直接通过url 访问指定目录中的静态资源，比如：localhost:3000/images/123123.png
+  app.useStaticAssets(join(__dirname, 'images'), {
+    prefix: '/images' // 访问静态资源的前缀
+  })
+
   // 接口开启版本控制，在具体的module api 前，增加v1 / v2 这样的版本，例如 http://localhost:3000/v1
   app.enableVersioning({
     type: VersioningType.URI,
   });
+
+  // 全局跨域处理
+  app.use(cors());
+
+  // 挂载全局中间件
+  app.use(GlobalMiddleware);
 
   app.use(
     session({
