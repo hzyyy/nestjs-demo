@@ -6,6 +6,7 @@ import * as session from 'express-session';
 import { Request, Response, NextFunction } from 'express';
 import * as cors from 'cors';
 import { NestExpressApplication } from '@nestjs/platform-express/interfaces';
+import { Intercept } from './common/Intercept';
 
 // 全局中间件
 function GlobalMiddleware(req: Request, res: Response, next: NextFunction) {
@@ -37,6 +38,9 @@ async function bootstrap() {
 
   // 挂载全局中间件
   app.use(GlobalMiddleware);
+
+  // 挂载api 全局拦截器
+  app.useGlobalInterceptors(new Intercept())
 
   app.use(
     session({
