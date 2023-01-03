@@ -7,7 +7,7 @@ interface Data<T> {
 
 // 利用rxjs，编写api 拦截器
 @Injectable()
-export class Intercept<T> implements NestInterceptor {
+export class InterceptorResponse<T> implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler<any>): Observable<Data<T>> | Promise<Observable<any>> {
     return next.handle().pipe(map(data => {
       return {
