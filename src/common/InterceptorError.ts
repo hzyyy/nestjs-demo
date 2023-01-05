@@ -12,7 +12,8 @@ export class InterceptorError implements ExceptionFilter {
 
     response.status(status).json({
       status,
-      data: exception.message,
+      data: exception.getResponse(),
+      message: exception.message,
       code: 1,
       path: request.url
     })
