@@ -9,9 +9,10 @@ import { ListModule } from './list/list.module';
 import { ChildModuleModule } from './child-module/child-module.module';
 import { UploadModule } from './upload/upload.module';
 import { PipeDtoModule } from './pipe-dto/pipe-dto.module';
+import { SpiderModule } from './spider/spider.module';
 
 @Module({
-  imports: [RestApiModule, UserModule, User1Module, ListModule, ChildModuleModule, UploadModule, PipeDtoModule],
+  imports: [RestApiModule, UserModule, User1Module, ListModule, ChildModuleModule, UploadModule, PipeDtoModule, SpiderModule],
   controllers: [AppController, TestController],
   providers: [AppService],
 })
