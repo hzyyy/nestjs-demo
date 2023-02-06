@@ -41,7 +41,7 @@ async function bootstrap() {
   // 挂载全局中间件
   app.use(GlobalMiddleware);
 
-  // // 挂载api 全局响应拦截器
+  // 挂载api 全局响应拦截器
   app.useGlobalInterceptors(new InterceptorResponse())
   // 挂载api 全局异常拦截器
   app.useGlobalFilters(new InterceptorError())
@@ -57,6 +57,6 @@ async function bootstrap() {
       rolling: true,          // 每次请求时，强行设置cookie，这将重置cookie 过期时间
     }),
   );
-  await app.listen(9999);
+  await app.listen(99);
 }
 bootstrap();
