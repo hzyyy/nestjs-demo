@@ -12,7 +12,7 @@ const fs = require('fs');
 const proxyConfig: AxiosProxyConfig = {
   protocol: 'http',
   host: '127.0.0.1',
-  port: 2010,
+  port: 51071,
 };
 
 @Injectable()
