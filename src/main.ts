@@ -56,6 +56,7 @@ async function bootstrap() {
 
   // swagger https://docs.nestjs.cn/9/recipes?id=swagger
   const swagger_options = new DocumentBuilder()
+    .addBearerAuth()
     .setTitle('章鱼哥接口文档')
     .setVersion('1.0')
     .addTag('simon')

@@ -6,8 +6,8 @@ export class CreateSwaggerDto {
 
   @ApiProperty({
     description: 'this age',
-    min: 1,
-    default: 1,
+    minItems: 10,
+    default: 21,
   })
   age: number;
 }
