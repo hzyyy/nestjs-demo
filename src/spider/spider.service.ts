@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Get, Injectable } from '@nestjs/common';
 import { CreateSpiderDto } from './dto/create-spider.dto';
 import { UpdateSpiderDto } from './dto/update-spider.dto';
 import axios, { AxiosProxyConfig } from 'axios';
@@ -23,7 +23,7 @@ export class SpiderService {
 
   async findAll() {
     let num = 1;
-    while (num <= 1) {
+    while (num <= 10) {
       await this.loadImgs(num);
       num++;
     }
@@ -67,6 +67,31 @@ export class SpiderService {
 
       ws.write(buffer);
     });
+  }
+
+  @Get('video')
+  async loadVideo() {
+    console.log(1);
+    
+    const buffer = await axios
+        .get(`https://videos.vpdmm.cc/litevideo/freepv/h/h_1/h_113sy198/h_113sy198_sm_w.mp4`, { responseType: 'arraybuffer', proxy: proxyConfig })
+        .then((res) => res.data)
+        .catch((err) => err);
+      const target_path = path.join(__dirname, '../images/video/');
+
+      console.log(buffer);
+      
+
+      // 生成文件之前，先判断存放目录是否存在，否则会报错
+      if (!fs.existsSync(target_path)) {
+        fs.mkdirSync(target_path);
+      }
+
+      const ws = fs.createWriteStream(
+        path.join(target_path, new Date().getTime() + '.mp4'),
+      );
+
+      ws.write(buffer);
   }
 
   findOne(id: number) {

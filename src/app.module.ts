@@ -11,9 +11,10 @@ import { UploadModule } from './upload/upload.module';
 import { PipeDtoModule } from './pipe-dto/pipe-dto.module';
 import { SpiderModule } from './spider/spider.module';
 import { SwaggerModule } from './swagger/swagger.module';
+import { GuardModule } from './guard/guard.module';
 
 @Module({
-  imports: [RestApiModule, UserModule, User1Module, ListModule, ChildModuleModule, UploadModule, PipeDtoModule, SpiderModule, SwaggerModule],
+  imports: [RestApiModule, UserModule, User1Module, ListModule, ChildModuleModule, UploadModule, PipeDtoModule, SpiderModule, SwaggerModule, GuardModule],
   controllers: [AppController, TestController],
   providers: [AppService],
 })

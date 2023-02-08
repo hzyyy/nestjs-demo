@@ -9,6 +9,7 @@ import { NestExpressApplication } from '@nestjs/platform-express/interfaces';
 import { InterceptorResponse } from './common/InterceptorResponse';
 import { InterceptorError } from './common/InterceptorError';
 import { ValidationPipe } from '@nestjs/common';
+import { GlobalGuardGuard } from './global-guard/global-guard.guard'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 // 全局中间件
@@ -46,6 +47,9 @@ async function bootstrap() {
   app.useGlobalInterceptors(new InterceptorResponse())
   // 挂载api 全局异常拦截器
   app.useGlobalFilters(new InterceptorError())
+
+  // 全局守卫
+  app.useGlobalGuards(new GlobalGuardGuard())
 
   // 挂载nestjs 内置的全局Pipe 管道，也可以自定义验证逻辑。目前在pipe-dto 功能中，使用了自定义的逻辑
   // app.useGlobalPipes(new ValidationPipe())
